@@ -1,41 +1,38 @@
-# Byte Pair Encoding (BPE) Tokenizer from Scratch
+# PBEP Tokenization and Autoregressive Language Model
 
 ## Project Overview
 
-This project implements a **Byte Pair Encoding (BPE) Tokenizer** completely from scratch using Python in JupyterLab. The tokenizer learns subword vocabulary by repeatedly merging the most frequent adjacent symbol pairs found in a text corpus.
+This project implements **Byte Pair Encoding (BPE) Tokenization** and a **Transformer-based Autoregressive Causal Language Model (ARLM)** from scratch using Python and PyTorch.
 
-This implementation does not use any external tokenizer libraries such as Hugging Face Tokenizers or SentencePiece. Every step of the BPE algorithm is implemented manually.
+The project demonstrates the complete NLP pipeline:
 
----
-
-## Objective
-
-The objective of this project is to understand how Byte Pair Encoding works internally by implementing every stage of the algorithm, including:
-
-- Reading a text corpus
-- Preprocessing text
-- Character-level tokenization
-- Word frequency calculation
-- Pair frequency calculation
-- Learning merge rules
-- Building vocabulary
-- Encoding unseen words
-- Decoding encoded tokens
+Raw Text
+→ Byte Pair Encoding (BPE)
+→ Vocabulary Creation
+→ Merge Rules
+→ Token IDs
+→ Embedding Layer
+→ Positional Encoding
+→ Transformer Encoder
+→ Causal Mask
+→ Next Token Prediction
 
 ---
 
 ## Features
 
-- Custom text corpus
-- Automatic vocabulary generation
-- Pair frequency counting
-- Iterative merge operations
-- Learned merge rules
-- Character-level tokenizer
-- BPE encoder
-- BPE decoder
-- Final vocabulary generation
-- Sample testing on unseen words
+- Byte Pair Encoding (BPE) Tokenizer
+- Vocabulary Construction
+- Merge Rule Learning
+- Tokenization using Learned Vocabulary
+- Token ID Mapping
+- Dataset Generation
+- Positional Encoding
+- Transformer-based Language Model
+- Causal Self-Attention
+- Cross Entropy Loss
+- Adam Optimizer
+- Text Generation
 
 ---
 
@@ -45,48 +42,32 @@ The objective of this project is to understand how Byte Pair Encoding works inte
 PBEP-Tokenization/
 │
 ├── BPE_Tokenizer.ipynb
+├── ARLM_From_Scratch.ipynb
+│
 ├── corpus.txt
-├── merge_rules.txt
 ├── vocabulary.txt
-├── sample_output.txt
+├── merge_rules.txt
+│
+├── arlm_model.pth
+├── generated_text.txt
+├── training_loss.png
+│
 ├── README.md
 ├── report.md
 ├── requirements.txt
-└── LICENSE
+├── LICENSE
+└── .gitignore
 ```
-
----
-
-## Algorithm
-
-The implementation follows these steps:
-
-1. Create Corpus
-2. Read Corpus
-3. Preprocess Text
-4. Split Words into Characters
-5. Count Word Frequencies
-6. Find Adjacent Symbol Pairs
-7. Count Pair Frequencies
-8. Select Most Frequent Pair
-9. Merge Pair
-10. Update Vocabulary
-11. Repeat Merge Process
-12. Save Merge Rules
-13. Build Final Vocabulary
-14. Encode New Words
-15. Decode Tokens
-16. Test the Tokenizer
-17. Display Results
 
 ---
 
 ## Technologies Used
 
-- Python 3.x
-- JupyterLab
-- collections
-- re
+- Python 3
+- PyTorch
+- NumPy
+- Matplotlib
+- Google Colab / Jupyter Notebook
 
 ---
 
@@ -95,7 +76,7 @@ The implementation follows these steps:
 Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/PBEP-Tokenization.git
+git clone https://github.com/your-username/PBEP-Tokenization.git
 ```
 
 Install dependencies
@@ -104,11 +85,11 @@ Install dependencies
 pip install -r requirements.txt
 ```
 
-Launch JupyterLab
+---
 
-```bash
-jupyter lab
-```
+## Running the Project
+
+### Step 1
 
 Open
 
@@ -118,60 +99,88 @@ BPE_Tokenizer.ipynb
 
 Run all cells.
 
----
+This generates:
 
-## Sample Output
-
-```
-Merge 1 : ('i', 'n')
-
-Merge 2 : ('e', 'r')
-
-Merge 3 : ('t', 'i')
-
-...
-
-Vocabulary Size : 85
-
-Encoding
-
-tokenization
-
-↓
-
-['to', 'ken', 'ization', '</w>']
-
-Decoded
-
-tokenization
-```
+- vocabulary.txt
+- merge_rules.txt
 
 ---
 
-## Learning Outcomes
+### Step 2
 
-This project demonstrates:
+Open
 
-- Tokenization from scratch
-- Data preprocessing
-- Frequency analysis
-- Greedy pair merging
-- Vocabulary learning
-- NLP preprocessing techniques
+```
+ARLM_From_Scratch.ipynb
+```
+
+Run all cells.
+
+The notebook will
+
+- Load the vocabulary
+- Convert text into token IDs
+- Create the training dataset
+- Train the Transformer model
+- Predict the next token
+
+---
+
+## Example
+
+Input
+
+```
+machine learning
+```
+
+Output
+
+```
+enables
+```
+
+Example
+
+```
+artificial intelligence
+```
+
+Output
+
+```
+is
+```
+
+---
+
+## Results
+
+The project successfully implements:
+
+- Byte Pair Encoding
+- Vocabulary Learning
+- Subword Tokenization
+- Transformer-based Language Model
+- Next Token Prediction
 
 ---
 
 ## Future Improvements
 
-- Token IDs
-- Unknown token support
-- Save and load trained tokenizer
-- Larger datasets
-- Performance optimization
-- Sentence-level encoding
+- Multi-head attention implementation from scratch
+- Larger training corpus
+- Beam Search
+- Top-k Sampling
+- Top-p Sampling
+- Model evaluation using Perplexity
 
 ---
 
 ## Author
 
-Afreen Nisha 
+AFREEN NISHA 
+
+University Name
+
+Course: Natural Language Processing

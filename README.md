@@ -181,6 +181,4 @@ The project successfully implements:
 
 AFREEN NISHA 
 
-University Name
-
 Course: Natural Language Processing

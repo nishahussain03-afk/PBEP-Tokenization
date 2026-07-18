@@ -1,213 +1,219 @@
-# Byte Pair Encoding (BPE) Tokenizer from Scratch
+# PBEP Tokenization and Autoregressive Language Model
 
 ## Abstract
 
-Byte Pair Encoding (BPE) is one of the most widely used subword tokenization techniques in Natural Language Processing (NLP). It reduces the vocabulary size while preserving meaningful subword units. This project implements the complete BPE algorithm from scratch using Python without relying on any external tokenizer libraries.
+This project implements a complete Natural Language Processing pipeline using Byte Pair Encoding (BPE) tokenization and an Autoregressive Causal Language Model (ARLM).
+
+The tokenizer learns subword units from a training corpus and generates a vocabulary using iterative pair merging. The generated vocabulary is then used to tokenize text into numerical token IDs.
+
+These token IDs are used to train a Transformer-based autoregressive language model capable of predicting the next token in a sequence.
 
 ---
 
-# Objective
+# Objectives
 
-The objective of this project is to understand and implement every stage of the Byte Pair Encoding algorithm manually, including vocabulary construction, pair merging, encoding, and decoding.
+The objectives of this project are:
 
----
-
-# Implementation Steps
-
-## Step 1: Create a Text Corpus
-
-A custom corpus consisting of technology-related words was created.
-
-Example:
-
-```
-artificial
-machine
-learning
-transformer
-tokenization
-attention
-language
-```
+- Implement Byte Pair Encoding from scratch.
+- Learn merge rules automatically.
+- Construct a subword vocabulary.
+- Convert text into token IDs.
+- Build a Transformer-based language model.
+- Train the model using Cross Entropy Loss.
+- Predict the next token.
 
 ---
 
-## Step 2: Read the Corpus
+# Methodology
 
-The corpus was stored in a text file and loaded into Python.
+## Step 1
 
----
-
-## Step 3: Preprocess Text
-
-The following preprocessing operations were performed:
-
-- Convert to lowercase
-- Remove unnecessary whitespace
-- Clean unwanted symbols
+Prepare the training corpus.
 
 ---
 
-## Step 4: Character-Level Tokenization
+## Step 2
 
-Each word was split into characters.
+Initialize the vocabulary using characters.
+
+---
+
+## Step 3
+
+Count adjacent token pairs.
+
+---
+
+## Step 4
+
+Merge the most frequent token pair.
+
+---
+
+## Step 5
+
+Repeat merging until the desired vocabulary size is reached.
+
+---
+
+## Step 6
+
+Save
+
+- vocabulary.txt
+- merge_rules.txt
+
+---
+
+## Step 7
+
+Convert text into token IDs.
+
+---
+
+## Step 8
+
+Create training sequences.
 
 Example
 
+Input
+
 ```
-machine
+machine learning enables computers
+```
+
+Target
+
+```
+to
+```
+
+---
+
+## Step 9
+
+Create embeddings.
+
+---
+
+## Step 10
+
+Apply positional encoding.
+
+---
+
+## Step 11
+
+Apply causal masking.
+
+---
+
+## Step 12
+
+Train the Transformer encoder.
+
+---
+
+## Step 13
+
+Predict the next token.
+
+---
+
+# Model Architecture
+
+```
+Input Text
 
 ↓
 
-m a c h i n e </w>
-```
-
-The end-of-word marker (`</w>`) preserves word boundaries.
-
----
-
-## Step 5: Count Word Frequencies
-
-A dictionary was created to count the occurrence of each unique word representation.
-
----
-
-## Step 6: Find Adjacent Symbol Pairs
-
-Adjacent symbols were extracted.
-
-Example
-
-```
-m a c h i n e </w>
-
-Pairs
-
-(m,a)
-(a,c)
-(c,h)
-(h,i)
-(i,n)
-(n,e)
-(e,</w>)
-```
-
----
-
-## Step 7: Count Pair Frequencies
-
-The frequency of each adjacent pair was calculated across the entire vocabulary.
-
----
-
-## Step 8: Select the Most Frequent Pair
-
-The pair with the highest frequency was selected for merging.
-
----
-
-## Step 9: Merge the Pair
-
-The selected pair was merged into a new token.
-
-Example
-
-```
-i n
+BPE Tokenizer
 
 ↓
 
-in
+Vocabulary
+
+↓
+
+Token IDs
+
+↓
+
+Embedding Layer
+
+↓
+
+Positional Encoding
+
+↓
+
+Transformer Encoder
+
+↓
+
+Linear Layer
+
+↓
+
+Softmax
+
+↓
+
+Next Token Prediction
 ```
 
 ---
 
-## Step 10: Update Vocabulary
+# Technologies
 
-Every occurrence of the merged pair was replaced in the vocabulary.
-
----
-
-## Step 11: Repeat Merge Process
-
-The merge operation was repeated for a fixed number of iterations until the desired vocabulary size was reached.
-
----
-
-## Step 12: Store Merge Rules
-
-Every merge operation was stored in order.
-
-These merge rules were later used during encoding.
-
----
-
-## Step 13: Build Final Vocabulary
-
-The final vocabulary consists of:
-
-- Individual characters
-- Merged subwords
-- End-of-word symbol
-
----
-
-## Step 14: Implement Encoder
-
-The encoder applies the learned merge rules sequentially to tokenize new words into subword tokens.
-
----
-
-## Step 15: Implement Decoder
-
-The decoder reconstructs the original word by concatenating the generated tokens and removing the end-of-word marker.
-
----
-
-## Step 16: Test the Tokenizer
-
-The tokenizer was evaluated using unseen words such as:
-
-- transformer
-- chatbot
-- prediction
-- language
-- tokenization
-
-Both encoding and decoding produced the expected results.
-
----
-
-## Step 17: Display Results
-
-The implementation displays:
-
-- Learned vocabulary
-- Merge rules
-- Encoded words
-- Decoded words
-- Vocabulary size
+- Python
+- PyTorch
+- NumPy
+- Matplotlib
+- Google Colab
 
 ---
 
 # Results
 
-The tokenizer successfully learned frequent subword units from the corpus. The learned merge rules enabled efficient tokenization of unseen words while preserving meaningful subword structures.
+The tokenizer successfully generated
+
+- Vocabulary
+- Merge Rules
+- Token IDs
+
+The language model successfully learned token relationships and predicted the next token from the given context.
+
+Example
+
+Input
+
+```
+machine learning
+```
+
+Prediction
+
+```
+enables
+```
 
 ---
 
 # Conclusion
 
-This project demonstrates a complete implementation of the Byte Pair Encoding (BPE) algorithm from scratch. It provides a clear understanding of vocabulary learning, subword tokenization, and encoding/decoding mechanisms commonly used in modern NLP models such as GPT, BERT, and RoBERTa.
+The project demonstrates a complete implementation of Byte Pair Encoding and an Autoregressive Transformer Language Model.
+
+The tokenizer effectively reduces unknown words by using subword units, while the Transformer captures contextual dependencies through causal self-attention for next-token prediction.
 
 ---
 
-# References
+# Future Work
 
-1. Sennrich, Haddow & Birch (2016). Neural Machine Translation of Rare Words with Subword Units.
-
-2. Hugging Face Tokenizers Documentation
-
-3. OpenAI Tokenization Concepts
-
-4. Byte Pair Encoding Algorithm
+- Larger datasets
+- Multi-GPU training
+- Better text generation
+- GPT-style decoder architecture
+- Beam Search
+- Top-k Sampling
